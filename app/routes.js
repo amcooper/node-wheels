@@ -10,8 +10,7 @@ function getTodos(res) { // SUBTHIS
 
         res.json(todos); // return all todos in JSON format // SUBTHIS
     });
-}
-;
+};
 
 module.exports = function (app) {
 
@@ -20,6 +19,16 @@ module.exports = function (app) {
     app.get('/api/todos', function (req, res) { // SUBTHIS
         // use mongoose to get all todos in the database
         getTodos(res); // SUBTHIS
+    });
+
+    // get a single todo // SUBTHIS
+    app.get('/api/todos/:todo_id', function (req, res) { // SUBTHIS
+        Todo.findById(req.params.todo_id, function (err, todo) { // SUBTHIS
+            if (err)
+                res.send(err);
+
+            res.json(todo);
+        });
     });
 
     // create todo and send back all todos after creation

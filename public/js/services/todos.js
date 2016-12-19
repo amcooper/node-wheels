@@ -7,6 +7,9 @@ angular.module('todoService', []) // SUBTHIS
 			get : function() {
 				return $http.get('/api/todos'); // SUBTHIS
 			},
+			read : function(id) {
+				return $http.get('/api/todos/' + id); // SUBTHIS
+			},
 			create : function(todoData) { // SUBTHIS
 				return $http.post('/api/todos', todoData); // SUBTHIS
 			},

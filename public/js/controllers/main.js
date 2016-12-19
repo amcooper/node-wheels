@@ -4,6 +4,7 @@ angular.module('todoController', []) // SUBTHIS
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) { // SUBTHIS
 		$scope.formData = {};
 		$scope.loading = true;
+		$scope.showOneTodo = null;
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
@@ -13,6 +14,16 @@ angular.module('todoController', []) // SUBTHIS
 				$scope.todos = data; // SUBTHIS
 				$scope.loading = false;
 			});
+
+		// READ ====================================================================
+		// Read a single todo
+		$scope.showTodo = function(id) { // SUBTHIS
+      Todos.read(id)
+        .success(function(data) {
+        	$scope.loading = false;
+        	$scope.showOneTodo = data;
+        });
+		};
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API

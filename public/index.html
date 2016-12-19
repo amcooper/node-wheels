@@ -32,44 +32,52 @@
 	<div class="container">
 
 		<!-- HEADER AND TODO COUNT -->
-		<div class="jumbotron text-center">
+		<div class="text-center">
 			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>  <!-- SUBTHIS -->
 		</div>
 
-		<!-- TODO LIST -->
-		<div id="todo-list" class="row">  <!-- SUBTHIS -->
-			<div class="col-sm-4 col-sm-offset-4">
+		<div class="row"> <!-- SUBTHIS -->
 
-				
-
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">  <!-- SUBTHIS -->
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}  <!-- SUBTHIS -->
-					</label>
-				</div>
-
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
-
-			</div>
-		</div>
-
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">  <!-- SUBTHIS -->
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
-
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">  <!-- SUBTHIS -->
+			<!-- TODO LIST --> <!-- SUBTHIS -->
+      <div id="todo-list">
+				<div class="col-sm-4">
+					<!-- LOOP OVER THE TODOS IN $scope.todos -->
+					<div ng-repeat="todo in todos">  <!-- SUBTHIS -->
+						<p ng-click="showTodo(todo._id)"> {{ todo.text }} </p> <!-- SUBTHIS -->
 					</div>
 
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>  <!-- SUBTHIS -->
-				</form>
+					<p class="text-center" ng-show="loading">
+						<span class="fa fa-spinner fa-spin fa-3x"></span>
+					</p>
+
+				</div>
 			</div>
+
+			<!-- SHOW A SINGLE TODO --> <!-- SUBTHIS -->
+			<div id="todo-show">
+				<div class="col-sm-4">
+					<div ng-show="showOneTodo">
+						<p>{{ showOneTodo.text }}</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- FORM TO CREATE TODOS --> <!-- SUBTHIS -->
+			<div id="todo-form">  <!-- SUBTHIS -->
+				<div class="col-sm-4 text-center">
+					<form>
+						<div class="form-group">
+
+							<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+							<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">  <!-- SUBTHIS -->
+						</div>
+
+						<!-- createToDo() WILL CREATE NEW TODOS -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>  <!-- SUBTHIS -->
+					</form>
+				</div>
+			</div>
+
 		</div>
 
 		<div class="text-center text-muted">  <!-- SUBTHIS -->

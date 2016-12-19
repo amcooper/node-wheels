@@ -1,9 +1,9 @@
 {
-  "name": "node-todo", // SUBTHIS
+  "name": "node-wheels", // SUBTHIS
   "version": "0.0.1",
-  "description": "Simple todo application.", // SUBTHIS
+  "description": "Simple one-model CRUD application.", // SUBTHIS
   "main": "server.js",
-  "author": "Scotch", // SUBTHIS
+  "author": "Wheels Within Wheels", // SUBTHIS
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.14.0",
