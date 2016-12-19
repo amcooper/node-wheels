@@ -1,14 +1,14 @@
-var Todo = require('./models/todo');
+var Todo = require('./models/todo'); // SUBTHIS
 
-function getTodos(res) {
-    Todo.find(function (err, todos) {
+function getTodos(res) { // SUBTHIS
+    Todo.find(function (err, todos) { // SUBTHIS
 
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err) {
             res.send(err);
         }
 
-        res.json(todos); // return all todos in JSON format
+        res.json(todos); // return all todos in JSON format // SUBTHIS
     });
 }
 ;
@@ -17,37 +17,37 @@ module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
     // get all todos
-    app.get('/api/todos', function (req, res) {
+    app.get('/api/todos', function (req, res) { // SUBTHIS
         // use mongoose to get all todos in the database
-        getTodos(res);
+        getTodos(res); // SUBTHIS
     });
 
     // create todo and send back all todos after creation
-    app.post('/api/todos', function (req, res) {
+    app.post('/api/todos', function (req, res) { // SUBTHIS
 
         // create a todo, information comes from AJAX request from Angular
-        Todo.create({
+        Todo.create({ // SUBTHIS
             text: req.body.text,
             done: false
-        }, function (err, todo) {
+        }, function (err, todo) { // SUBTHIS
             if (err)
                 res.send(err);
 
             // get and return all the todos after you create another
-            getTodos(res);
+            getTodos(res); // SUBTHIS
         });
 
     });
 
     // delete a todo
-    app.delete('/api/todos/:todo_id', function (req, res) {
-        Todo.remove({
-            _id: req.params.todo_id
-        }, function (err, todo) {
+    app.delete('/api/todos/:todo_id', function (req, res) { // SUBTHIS
+        Todo.remove({ // SUBTHIS
+            _id: req.params.todo_id // SUBTHIS
+        }, function (err, todo) { // SUBTHIS
             if (err)
                 res.send(err);
 
-            getTodos(res);
+            getTodos(res); // SUBTHIS
         });
     });
 
