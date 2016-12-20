@@ -10,8 +10,8 @@ angular.module('todoService', []) // SUBTHIS
 			read : function(id) {
 				return $http.get('/api/todos/' + id); // SUBTHIS
 			},
-			update : function(id) {
-				return $http.put('/api/todos/' + id); // SUBTHIS				
+			update : function(todoData) {
+				return $http.put('/api/todos/', todoData); // SUBTHIS				
 			},
 			create : function(todoData) { // SUBTHIS
 				return $http.post('/api/todos', todoData); // SUBTHIS
