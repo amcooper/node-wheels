@@ -34,12 +34,14 @@ module.exports = function (app) {
     // edit a single todo
     app.put('/api/todos/:todo_id', function (req, res) {
         Todo.findById(req.params.todo_id, function (err, todo) {
-            if (err)
+            if (err) {
                 res.send(err);
-            todo.text = req.params.text;
-            todo.save().then(function(todo) {
-                res.json(todo);
-            });
+            } else {
+                todo.text = req.params.text;
+                todo.save().then(function(todo) {
+                    res.json(todo);
+                });
+            }
         });
     });
 

@@ -54,35 +54,32 @@
 			</div>
 
 			<!-- EMPTY PANEL HACK --> 
-			<div id="empty-panel">
-				<div class="col-sm-4">
-					<div ng-show="(show == null) && (edit == null)">
-					</div>
-				</div>
+			<div id="empty-panel" ng-show="(show == null) && (edit == null)">
+				<div class="col-sm-4"></div>
 			</div>
 
 			<!-- SHOW A SINGLE TODO --> <!-- SUBTHIS -->
-			<div id="todo-show">
+			<div id="todo-show" ng-show="show">
 				<div class="col-sm-4">
-					<div ng-show="show">
+					<!-- <div ng-show="show"> -->
 						<p> {{ show.text }} </p>
 						<button value="edit" class="btn btn-primary" ng-click="editFormTodo()">Edit</button> <button class="btn btn-primary" value="delete" ng-click="deleteTodo(show._id)">Delete</button>
-					</div>
+					<!-- </div> -->
 				</div>
 			</div>
 
 			<!-- EDIT A SINGLE TODO --> <!-- SUBTHIS -->
-			<div id="todo-edit">
+			<div id="todo-edit" ng-show="edit">
 				<div class="col-sm-4">
-					<div ng-show="edit">
+					<!-- <div ng-show="edit"> -->
 					  <form>
 						  <div class="form-group">
-								<input type="text" class="form-control" value="{{ edit.text }}" ng-model="editFormData.text">
-								<button class="btn btn-primary" ng-click="editTodo(edit._id)">Edit</button>
+								<input type="text" class="form-control" value="{{ edit.text }}" ng-model="edit.text">
 							</div>
+							<button class="btn btn-primary" ng-click="editTodo(edit)">Edit</button>
 						</form> 
 						<button class="btn btn-primary" ng-click="showTodo(edit._id)">Cancel</button>
-					</div>
+					<!-- </div> -->
 				</div>
 			</div>
 

@@ -36,11 +36,12 @@ angular.module('todoController', []) // SUBTHIS
 			$scope.show = null;
 		};
 
-		$scope.editTodo = function(id) {
-			if ($scope.editFormData.text != undefined) {
+		$scope.editTodo = function(todo) {
+			console.log('\n***********\n* $scope.edit.text: ' + $scope.edit.text + '\n* todo.text: ' + todo.text + '\n*********');
+			if ($scope.edit.text != undefined) {
 				$scope.loading = true;
 
-				Todos.update($scope.editFormData)
+				Todos.update($scope.edit._id)
 				  .success(function(data) {
 				  	$scope.loading = false;
 				  	$scope.formData = {};
