@@ -31,6 +31,18 @@ module.exports = function (app) {
         });
     });
 
+    // edit a single todo
+    app.put('/api/todos/:todo_id', function (req, res) {
+        Todo.findById(req.params.todo_id, function (err, todo) {
+            if (err)
+                res.send(err);
+            todo.text = req.params.text;
+            todo.save().then(function(todo) {
+                res.json(todo);
+            });
+        });
+    });
+
     // create todo and send back all todos after creation
     app.post('/api/todos', function (req, res) { // SUBTHIS
 

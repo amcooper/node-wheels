@@ -4,7 +4,9 @@ angular.module('todoController', []) // SUBTHIS
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) { // SUBTHIS
 		$scope.formData = {};
 		$scope.loading = true;
-		$scope.showOneTodo = null;
+		$scope.show = null;
+		$scope.edit = null;
+		// $scope.showOneTodo = null;
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
@@ -18,11 +20,34 @@ angular.module('todoController', []) // SUBTHIS
 		// READ ====================================================================
 		// Read a single todo
 		$scope.showTodo = function(id) { // SUBTHIS
+			$scope.loading = true;
       Todos.read(id)
         .success(function(data) {
         	$scope.loading = false;
-        	$scope.showOneTodo = data;
+        	$scope.show = data;
+        	$scope.edit = null;
         });
+		};
+
+		// EDIT ====================================================================
+		// Edit a single todo
+		$scope.editFormTodo = function() {
+			$scope.edit = $scope.show;
+			$scope.show = null;
+		};
+
+		$scope.editTodo = function(id) {
+			if ($scope.editFormData.text != undefined) {
+				$scope.loading = true;
+
+				Todos.update($scope.editFormData)
+				  .success(function(data) {
+				  	$scope.loading = false;
+				  	$scope.formData = {};
+				  	$scope.edit = null;
+				  	$scope.show = data;
+				  });
+			}
 		};
 
 		// CREATE ==================================================================
@@ -55,6 +80,7 @@ angular.module('todoController', []) // SUBTHIS
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
 					$scope.loading = false;
+					$scope.show = null;
 					$scope.todos = data; // assign our new list of todos // SUBTHIS
 				});
 		};
