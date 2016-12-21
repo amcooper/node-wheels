@@ -1,7 +1,7 @@
 angular.module('todoController', []) // SUBTHIS
 
 	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) { // SUBTHIS
+	.controller('MainController', ['$scope','$http','Todos', function($scope, $http, Todos) { // SUBTHIS
 		$scope.formData = {};
 		$scope.loading = true;
 		$scope.show = null;
@@ -37,17 +37,20 @@ angular.module('todoController', []) // SUBTHIS
 		};
 
 		$scope.editTodo = function() {
-			console.log('\n***********\n* $scope.edit.text: ' + $scope.edit.text);
-			// console.log('* todo.text: ' + todo.text + '\n*********');
 			if ($scope.edit.text != undefined) {
 				$scope.loading = true;
 
 				Todos.update($scope.edit)
 				  .success(function(data) {
-				  	$scope.loading = false;
 				  	$scope.formData = {};
 				  	$scope.edit = null;
 				  	$scope.show = data;
+				  });
+
+				Todos.get()
+				  .success(function(data) {
+				  	$scope.todos = data;
+				  	$scope.loading = false;
 				  });
 			}
 		};
