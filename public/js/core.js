@@ -1,1 +1,1 @@
-angular.module('scotchTodo', ['todoController', 'todoService']); // SUBTHIS
+angular.module('nodeWheels', ['itemController', 'itemService']); // SUBTHIS

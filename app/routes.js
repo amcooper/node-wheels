@@ -1,76 +1,76 @@
-var Todo = require('./models/todo'); // SUBTHIS
+var Item = require('./models/item'); // SUBTHIS
 
-function getTodos(res) { // SUBTHIS
-    Todo.find(function (err, todos) { // SUBTHIS
+function getItems(res) { // SUBTHIS
+    Item.find(function (err, items) { // SUBTHIS
 
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err) {
             res.send(err);
         }
 
-        res.json(todos); // return all todos in JSON format // SUBTHIS
+        res.json(items); // return all items in JSON format // SUBTHIS
     });
 };
 
 module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
-    // get all todos
-    app.get('/api/todos', function (req, res) { // SUBTHIS
-        // use mongoose to get all todos in the database
-        getTodos(res); // SUBTHIS
+    // get all items
+    app.get('/api/items', function (req, res) { // SUBTHIS
+        // use mongoose to get all items in the database
+        getItems(res); // SUBTHIS
     });
 
-    // get a single todo // SUBTHIS
-    app.get('/api/todos/:todo_id', function (req, res) { // SUBTHIS
-        Todo.findById(req.params.todo_id, function (err, todo) { // SUBTHIS
+    // get a single item // SUBTHIS
+    app.get('/api/items/:item_id', function (req, res) { // SUBTHIS
+        Item.findById(req.params.item_id, function (err, item) { // SUBTHIS
             if (err)
                 res.send(err);
 
-            res.json(todo);
+            res.json(item);
         });
     });
 
-    // edit a single todo
-    app.put('/api/todos/', function (req, res) {
-        Todo.findById(req.body._id, function (err, todo) {
+    // edit a single item
+    app.put('/api/items/', function (req, res) {
+        Item.findById(req.body._id, function (err, item) {
             if (err) {
                 res.send(err);
             } else {
-                todo.text = req.body.text;
-                todo.save().then(function(todo) {
-                    res.json(todo);
+                item.text = req.body.text;
+                item.save().then(function(item) {
+                    res.json(item);
                 });
             }
         });
     });
 
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function (req, res) { // SUBTHIS
+    // create item and send back all items after creation
+    app.post('/api/items', function (req, res) { // SUBTHIS
 
-        // create a todo, information comes from AJAX request from Angular
-        Todo.create({ // SUBTHIS
+        // create an item, information comes from AJAX request from Angular
+        Item.create({ // SUBTHIS
             text: req.body.text,
             done: false
-        }, function (err, todo) { // SUBTHIS
+        }, function (err, item) { // SUBTHIS
             if (err)
                 res.send(err);
 
-            // get and return all the todos after you create another
-            getTodos(res); // SUBTHIS
+            // get and return all the items after you create another
+            getItems(res); // SUBTHIS
         });
 
     });
 
-    // delete a todo
-    app.delete('/api/todos/:todo_id', function (req, res) { // SUBTHIS
-        Todo.remove({ // SUBTHIS
-            _id: req.params.todo_id // SUBTHIS
-        }, function (err, todo) { // SUBTHIS
+    // delete an item
+    app.delete('/api/items/:item_id', function (req, res) { // SUBTHIS
+        Item.remove({ // SUBTHIS
+            _id: req.params.item_id // SUBTHIS
+        }, function (err, item) { // SUBTHIS
             if (err)
                 res.send(err);
 
-            getTodos(res); // SUBTHIS
+            getItems(res); // SUBTHIS
         });
     });
 
