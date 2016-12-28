@@ -22,9 +22,9 @@ angular.module('itemController', []) // SUBTHIS
 		$scope.showItem = function(id) { // SUBTHIS
 			$scope.loading = true;
       Items.read(id)
-        .success(function(data) {
+        .then(function(response) {
         	$scope.loading = false;
-        	$scope.show = data;
+        	$scope.show = response.data;
         	$scope.edit = null;
         });
 		};
@@ -41,15 +41,15 @@ angular.module('itemController', []) // SUBTHIS
 				$scope.loading = true;
 
 				Items.update($scope.edit)
-				  .success(function(data) {
+				  .then(function(response) {
 				  	$scope.formData = {};
 				  	$scope.edit = null;
-				  	$scope.show = data;
+				  	$scope.show = response.data;
 				  });
 
 				Items.get()
-				  .success(function(data) {
-				  	$scope.items = data;
+				  .then(function(response) {
+				  	$scope.items = response.data;
 				  	$scope.loading = false;
 				  });
 			}
@@ -68,10 +68,10 @@ angular.module('itemController', []) // SUBTHIS
 				Items.create($scope.formData) // SUBTHIS
 
 					// if successful creation, call our get function to get all the new items
-					.success(function(data) {
+					.then(function(response) {
 						$scope.loading = false;
 						$scope.formData = {}; // clear the form so our user is ready to enter another
-						$scope.items = data; // assign our new list of items // SUBTHIS
+						$scope.items = response.data; // assign our new list of items // SUBTHIS
 					});
 			}
 		};
@@ -83,10 +83,10 @@ angular.module('itemController', []) // SUBTHIS
 
 			Items.delete(id) // SUBTHIS
 				// if successful creation, call our get function to get all the new items
-				.success(function(data) {
+				.then(function(response) {
 					$scope.loading = false;
 					$scope.show = null;
-					$scope.items = data; // assign our new list of items // SUBTHIS
+					$scope.items = response.data; // assign our new list of items // SUBTHIS
 				});
 		};
 	}]);
