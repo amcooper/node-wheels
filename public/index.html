@@ -20,7 +20,6 @@
 	</style>
 
 	<!-- SPELLS -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
 
 	<!-- <script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<!-- <script src="js/services/items.js"></script> <!-- load our item service -->  <!-- SUBTHIS? -->
@@ -39,86 +38,14 @@
 	<script src="js/item-detail/item-detail.component.js"></script>
 
 </head>
-<!-- SET THE CONTROLLER -->
-<body ng-controller="MainController as ctrl">
-	<div class="container">
 
-		<!-- HEADER AND ITEM COUNT -->
-		<div class="text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ items.length }}</span></h1>  <!-- SUBTHIS -->
-		</div>
-
-		<div class="row"> <!-- SUBTHIS -->
-
-			<!-- ITEM LIST --> <!-- SUBTHIS -->
-      <div id="item-list">
-				<div class="col-sm-4">
-					<!-- LOOP OVER THE ITEMS IN $scope.items -->
-					<div ng-repeat="item in items">  <!-- SUBTHIS -->
-						<p ng-click="showItem(item._id)"> {{ item.text }} </p> <!-- SUBTHIS -->
-					</div>
-
-					<p class="text-center" ng-show="loading">
-						<span class="fa fa-spinner fa-spin fa-3x"></span>
-					</p>
-
-				</div>
-			</div>
-
-			<!-- EMPTY PANEL HACK --> 
-			<div id="empty-panel" ng-show="(show == null) && (edit == null)">
-				<div class="col-sm-4"></div>
-			</div>
-
-			<!-- SHOW A SINGLE ITEM --> <!-- SUBTHIS -->
-			<div id="item-show" ng-show="show">
-				<div class="col-sm-4">
-					<!-- <div ng-show="show"> -->
-						<p> {{ show.text }} </p>
-						<button value="edit" class="btn btn-primary" ng-click="editFormItem()">Edit</button> <button class="btn btn-primary" value="delete" ng-click="deleteItem(show._id)">Delete</button>
-					<!-- </div> -->
-				</div>
-			</div>
-
-			<!-- EDIT A SINGLE ITEM --> <!-- SUBTHIS -->
-			<div id="item-edit" ng-show="edit">
-				<div class="col-sm-4">
-					<!-- <div ng-show="edit"> -->
-					  <form>
-						  <div class="form-group">
-								<input type="text" class="form-control" value="{{ edit.text }}" ng-model="edit.text">
-							</div>
-							<button class="btn btn-primary" ng-click="editItem()">Edit</button>
-						</form> 
-						<button class="btn btn-primary" ng-click="showItem(edit._id)">Cancel</button>
-					<!-- </div> -->
-				</div>
-			</div>
-
-			<!-- FORM TO CREATE ITEMS --> <!-- SUBTHIS -->
-			<div id="item-form">  <!-- SUBTHIS -->
-				<div class="col-sm-4 text-center">
-					<form>
-						<div class="form-group">
-
-							<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-							<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">  <!-- SUBTHIS -->
-						</div>
-
-						<!-- createItem() WILL CREATE NEW ITEMS -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="createItem()">Add</button>  <!-- SUBTHIS -->
-					</form>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="text-center text-muted">  <!-- SUBTHIS -->
-			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
-		</div>
-
-	</div>
-
+<body>
+  <div class="container">
+  	<div class="row">
+  		  <div ng-view></div>
+  	</div>
+  </div>
 </body>
+
+
 </html>
