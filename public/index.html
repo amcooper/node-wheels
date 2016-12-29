@@ -22,13 +22,25 @@
 	<!-- SPELLS -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
 
-	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
-	<script src="js/services/items.js"></script> <!-- load our item service -->  <!-- SUBTHIS? -->
-	<script src="js/core.js"></script> <!-- load our main application -->
+	<!-- <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<!-- <script src="js/services/items.js"></script> <!-- load our item service -->  <!-- SUBTHIS? -->
+	<!-- <script src="js/core.js"></script> <!-- load our main application -->
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="js/app.module.js"></script>
+	<script src="js/app.config.js"></script>
+	<script src="js/core/core.module.js"></script>
+	<script src="js/core/item/item.module.js"></script>
+	<script src="js/core/item/item.service.js"></script>
+	<script src="js/item-list/item-list.module.js"></script>
+	<script src="js/item-list/item-list.component.js"></script>
+	<script src="js/item-detail/item-detail.module.js"></script>
+	<script src="js/item-detail/item-detail.component.js"></script>
 
 </head>
 <!-- SET THE CONTROLLER -->
-<body ng-controller="MainController">
+<body ng-controller="MainController as ctrl">
 	<div class="container">
 
 		<!-- HEADER AND ITEM COUNT -->
