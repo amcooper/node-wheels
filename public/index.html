@@ -25,24 +25,18 @@
 	<!-- <script src="js/services/items.js"></script> <!-- load our item service -->  <!-- SUBTHIS? -->
 	<!-- <script src="js/core.js"></script> <!-- load our main application -->
 	<script src="bower_components/angular/angular.min.js"></script>
-	<script src="bower_components/angular-resource/angular-resource.min.js"></script>
-	<script src="bower_components/angular-route/angular-route.min.js"></script>
-	<script src="js/app.module.js"></script>
-	<script src="js/app.config.js"></script>
-	<script src="js/core/core.module.js"></script>
-	<script src="js/core/item/item.module.js"></script>
-	<script src="js/core/item/item.service.js"></script>
-	<script src="js/item-list/item-list.module.js"></script>
-	<script src="js/item-list/item-list.component.js"></script>
-	<script src="js/item-detail/item-detail.module.js"></script>
-	<script src="js/item-detail/item-detail.component.js"></script>
+	<script src="bundle.js"></script>
+	<!-- <script src="bower_components/angular-route/angular-route.min.js"></script> -->
+	<script src="app.js"></script>
+	<script src="services/items.js"></script>
+	<script src="components/items.js"></script>
 
 </head>
 
 <body>
   <div class="container">
   	<div class="row">
-  		  <div ng-view></div>
+  		  <ui-view></ui-view>
   	</div>
   </div>
 </body>

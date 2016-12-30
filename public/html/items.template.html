@@ -1,0 +1,33 @@
+	<!-- ITEM LIST --> <!-- SUBTHIS -->
+  <div id="item-list">
+		<div class="col-sm-4">
+			<!-- LOOP OVER THE ITEMS IN $scope.items -->
+			<div ng-repeat="item in items">  <!-- SUBTHIS -->
+				<p ng-click="showItem(item._id)"> {{ item.text }} </p> <!-- SUBTHIS -->
+			</div>
+
+			<p class="text-center" ng-show="loading">
+				<span class="fa fa-spinner fa-spin fa-3x"></span>
+			</p>
+
+		</div>
+	</div>
+
+
+
+	<!-- FORM TO CREATE ITEMS --> <!-- SUBTHIS -->
+	<div id="item-form">  <!-- SUBTHIS -->
+		<div class="col-sm-4 text-center">
+			<form>
+				<div class="form-group">
+
+					<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+					<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">  <!-- SUBTHIS -->
+				</div>
+
+				<!-- createItem() WILL CREATE NEW ITEMS -->
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="createItem()">Add</button>  <!-- SUBTHIS -->
+			</form>
+		</div>
+	</div>
+
