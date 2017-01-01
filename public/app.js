@@ -13,6 +13,19 @@ myApp.config( function( $stateProvider ) {
 	  			return ItemsService.getAllItems();
 	  		}
 	  	} 
+	  },
+
+	  {
+	  	name: 'items.item',
+	  	url: '/{itemId}',
+	  	component: 'item',
+	  	resolve: {
+	  		item: function(items, $stateParams) {
+	  			return items.find(function(item) {
+	  				return item._id === $stateParams.itemId;
+	  			});
+	  		}
+	  	}
 	  }
 	  //, { name: 'show', component: 'show' },
 	  // { name: 'edit', component: 'edit' }

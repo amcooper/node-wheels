@@ -10,7 +10,7 @@ angular
 
   	  getItem: function(id) {
   	  	function itemMatchesParam(item) {
-  	  		return item.id === id;
+  	  		return item._id === id;
   	  	}
 
   	  	return service.getAllItems().then(function(items) {
