@@ -4,34 +4,21 @@ var myApp = angular.module( 'nodeWheels', ['ui.router']);
 
 myApp.config( function( $stateProvider ) {
 	var states = [
-	  // { 
-	  // 	name: 'items',
-	  // 	url: '/items', 
-	  // 	component: 'items',
-	  // 	resolve: {
-	  // 		items: function( ItemsService ) {
-	  // 			return ItemsService.getAllItems();
-	  // 		}
-	  // 	} 
-	  // },
-
-	  {
-	  	name: 'itemShow',
-	  	url: '/{itemId}/show',
-	  	component: 'itemShow',
+	  { 
+	  	name: 'items',
+	  	url: '/items', 
+	  	component: 'items',
 	  	resolve: {
-	  		item: function(items, $stateParams) {
-	  			return items.find(function(item) {
-	  				return item._id === $stateParams.itemId;
-	  			});
+	  		items: function( ItemsService ) {
+	  			return ItemsService.getAllItems();
 	  		}
-	  	}
+	  	} 
 	  },
 
 	  {
-	  	name: 'itemEdit',
-	  	url: '/{itemId}/edit',
-	  	component: 'itemEdit',
+	  	name: 'items.item',
+	  	url: '/{itemId}',
+	  	component: 'item',
 	  	resolve: {
 	  		item: function(items, $stateParams) {
 	  			return items.find(function(item) {
@@ -40,7 +27,8 @@ myApp.config( function( $stateProvider ) {
 	  		}
 	  	}
 	  }
-
+	  //, { name: 'show', component: 'show' },
+	  // { name: 'edit', component: 'edit' }
 	];
 
 	states.forEach( function( state ) {
