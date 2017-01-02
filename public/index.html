@@ -37,10 +37,50 @@
 
 <body>
   <div class="container">
-  	<div class="row">
-  		  <ui-view></ui-view>
-  	</div>
-  </div>
+		<!-- HEADER AND ITEM COUNT -->
+		<div class="text-center">
+			<h1>A compendium of items <span class="label label-info">{{ items.length }}</span></h1>  <!-- SUBTHIS -->
+		</div>
+
+		<div class="row"> <!-- SUBTHIS -->
+			<div class="col-sm-4">
+				<!-- FORM TO CREATE ITEMS --> <!-- SUBTHIS -->
+				<div id="item-form">  <!-- SUBTHIS -->
+						<form>
+							<div class="form-group">
+
+								<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+								<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">  <!-- SUBTHIS -->
+							</div>
+
+							<!-- createItem() WILL CREATE NEW ITEMS -->
+							<button type="submit" class="btn btn-primary btn-lg" ng-click="createItem()">Add</button>  <!-- SUBTHIS -->
+						</form>
+				</div>
+
+
+				<!-- ITEM LIST --> <!-- SUBTHIS -->
+	      <div id="item-list">
+						<!-- LOOP OVER THE ITEMS IN $ctrl.items -->
+						<div ng-repeat="item in $ctrl.items">  <!-- SUBTHIS -->
+							<a ui-sref-active="active" ui-sref="itemShow({ itemId: item._id })"> {{ item.text }} </a> <!-- SUBTHIS -->
+						</div>
+
+						<p class="text-center" ng-show="loading">
+							<span class="fa fa-spinner fa-spin fa-3x"></span>
+						</p>
+
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<ui-view></ui-view>
+			</div>
+		</div>
+
+
+	</div>
+
 </body>
 
 
