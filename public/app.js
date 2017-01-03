@@ -1,6 +1,6 @@
 // 'use strict';
 
-var myApp = angular.module( 'nodeWheels', ['ui.router']);
+var myApp = angular.module( 'nodeWheels', ['ui.router', 'ngResource']);
 
 myApp.config( function( $stateProvider ) {
 	var states = [
