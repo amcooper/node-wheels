@@ -37,7 +37,10 @@ module.exports = function (app) {
             if (err) {
                 res.send(err);
             } else {
-                item.text = req.body.text;
+                item.title = req.body.title;
+                item.attr01 = req.body.attr01;
+                item.attr02 = req.body.attr02;
+                item.attr03 = req.body.attr03;
                 item.save().then(function(item) {
                     res.json(item);
                 });
@@ -50,14 +53,20 @@ module.exports = function (app) {
 
         // create an item, information comes from AJAX request from Angular
         Item.create({ // SUBTHIS
-            text: req.body.text,
+            title: req.body.title,
+            attr01: req.body.attr01,
+            attr02: req.body.attr02,
+            attr03: req.body.attr03,
             done: false
         }, function (err, item) { // SUBTHIS
             if (err)
                 res.send(err);
 
+            res.json(item);
+
+            // Old version:
             // get and return all the items after you create another
-            getItems(res); // SUBTHIS
+            // getItems(res); // SUBTHIS
         });
 
     });
@@ -70,7 +79,10 @@ module.exports = function (app) {
             if (err)
                 res.send(err);
 
-            getItems(res); // SUBTHIS
+            res.json(item);
+
+            // Old version:
+            // getItems(res); // SUBTHIS
         });
     });
 
