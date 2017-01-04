@@ -1,0 +1,14 @@
+2017-01-01
+
+Roll back to previous commit, and have the router (Express) redirect * to /#/items or whatever.
+
+--------------------------
+2016-12-30
+
+So it looks like I need to include Angular-UI-Router 1.0.0 to get components going.
+
+Right now I've got 0.3.2[?], loaded in with Browserify.
+
+Two approaches.
+1. npm uninstall - zap gateway.js and bundle.js - then install angular ui router 0.3.2 [?] inside the public directory.
+2. npm uninstall - zap gateway.js and bundle.js - then install angular ui router 0.3.2 in root directory - and Browserify again.
