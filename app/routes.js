@@ -32,8 +32,8 @@ module.exports = function (app) {
     });
 
     // edit a single item
-    app.put('/api/items/', function (req, res) {
-        Item.findById(req.body._id, function (err, item) {
+    app.put('/api/items/:item_id', function (req, res) {
+        Item.findById(req.params.item_id, function (err, item) {
             if (err) {
                 res.send(err);
             } else {
